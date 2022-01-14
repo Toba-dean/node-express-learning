@@ -1,0 +1,79 @@
+// const http = require('http');
+
+// const server = http.createServer((req, res) => {
+//   if(req.url === '/') {
+//     res.end('Welcome Home')
+//   }
+//   if(req.url === '/about') {
+//     res.end('This is the about page')
+//   }
+//   res.end('ERROR PAGE')
+// });
+
+// server.listen(3000, () => {
+//   console.log('Server is listening');
+// })
+
+const { readFile, writeFile } = require('fs').promises;
+// const utils = require('util')
+
+
+// CALLBACK (BAD)
+
+// readFile('./content/first.txt', 'utf-8', (err, data) => {
+//   if(err) {
+//     return
+//   }else {
+//     console.log(data)
+//   }
+// })
+
+// PROMISE BASED
+
+// const getText = path => {
+//   return new Promise((res, rej) => {
+//     readFile(path, 'utf-8', (err, data) => {
+//       if(err) {
+//         rej(err)
+//       }else {
+//         res(data)
+//       }
+//     })
+//   })
+// }
+
+// getText('./content/first.txt')
+//   .then(res => console.log(res))
+//   .catch(err => console.log(err))
+
+
+// ASYNC / AWAIT
+
+// const readFilePromise = utils.promisify(readFile);
+// const writeFilePromise = utils.promisify(writeFile);
+
+// const useAstAwt = async () => {
+//   try{
+//     const firstData = await readFilePromise('./content/first.txt', 'utf-8');
+//     const secondData = await readFilePromise('./content/second.txt', 'utf-8');
+//     await writeFilePromise('./content/result.txt', `Hi, i'm tune, the man on the moon!`)
+//     console.log(firstData);
+//     console.log(secondData);
+//   }catch(err) {
+//     console.log(err.message)
+//   }
+// }
+
+const useAstAwt = async () => {
+  try{
+    const firstData = await readFile('./content/first.txt', 'utf-8');
+    const secondData = await readFile('./content/second.txt', 'utf-8');
+    await writeFile('./content/result-another.txt', `Hi, i'm Dean, the man whose gon win!`)
+    console.log(firstData);
+    console.log(secondData);
+  }catch(err) {
+    console.log(err.message)
+  }
+}
+
+useAstAwt()
