@@ -2,20 +2,22 @@
 
 // const server = http.createServer((req, res) => {
 //   if(req.url === '/') {
-//     res.end('Welcome Home')
+//     return res.end('Welcome Home')
 //   }
 //   if(req.url === '/about') {
-//     res.end('This is the about page')
+//     return res.end('This is the about page')
 //   }
-//   res.end('ERROR PAGE')
+//   return res.end('ERROR PAGE')
 // });
 
 // server.listen(3000, () => {
 //   console.log('Server is listening');
 // })
 
-const { readFile, writeFile } = require('fs').promises;
-// const utils = require('util')
+
+
+// const { readFile, writeFile } = require('fs');
+// const utils = require('util');
 
 
 // CALLBACK (BAD)
@@ -29,7 +31,6 @@ const { readFile, writeFile } = require('fs').promises;
 // })
 
 // PROMISE BASED
-
 // const getText = path => {
 //   return new Promise((res, rej) => {
 //     readFile(path, 'utf-8', (err, data) => {
@@ -48,6 +49,7 @@ const { readFile, writeFile } = require('fs').promises;
 
 
 // ASYNC / AWAIT
+// const { readFile, writeFile } = require('fs').promises;
 
 // const readFilePromise = utils.promisify(readFile);
 // const writeFilePromise = utils.promisify(writeFile);
@@ -64,16 +66,16 @@ const { readFile, writeFile } = require('fs').promises;
 //   }
 // }
 
-const useAstAwt = async () => {
-  try{
-    const firstData = await readFile('./content/first.txt', 'utf-8');
-    const secondData = await readFile('./content/second.txt', 'utf-8');
-    await writeFile('./content/result-another.txt', `Hi, i'm Dean, the man whose gon win!`)
-    console.log(firstData);
-    console.log(secondData);
-  }catch(err) {
-    console.log(err.message)
-  }
-}
+// const useAstAwt = async () => {
+//   try{
+//     const firstData = await readFile('./content/first.txt', 'utf-8');
+//     const secondData = await readFile('./content/second.txt', 'utf-8');
+//     await writeFile('./content/result-another.txt', `Hi, i'm Dean, the man whose gon win!`)
+//     console.log(firstData);
+//     console.log(secondData);
+//   }catch(err) {
+//     console.log(err.message)
+//   }
+// }
 
-useAstAwt()
+// useAstAwt()
