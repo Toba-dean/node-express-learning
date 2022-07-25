@@ -1,4 +1,4 @@
-// // OS MOGDULE
+// // OS MODULE
 
 // const OS = require('os')
 
@@ -23,23 +23,70 @@
 // const path = require('path')
 // console.log(path.sep)
 
-// // FS MODULe
+// FS MODULe
 
-// const fs = require('fs')
+const fs = require('fs');
+const { readFileSync, writeFileSync, readFile, writeFile } = fs;
+
+// reading and writing of files synchronously
+// const first = readFileSync('./content/first.txt', 'utf-8');
+
+// console.log(first);
+
+// writeFileSync(
+//   './content/result-sync.txt',
+//   `The result from the sync: ${first}`
+// )
+
+// reading file asynchronously leads to a CALLBACK HELL!!
+readFile(
+  './content/first.txt',
+  'utf-8',
+  (error, result) => {
+    if (error) {
+      console.log('there is an error: ' + error);
+      return false;
+    }
+    const first = result
+
+    readFile(
+      './content/second.txt',
+      'utf-8',
+      (error, result) => {
+        if (error) {
+          console.log('there is an error: ' + error);
+          return false;
+        }
+        const second = result
+
+        writeFile(
+          './content/result-async.txt',
+          `The result from the async: ${first} and ${second}`,
+          (err, result) => {
+            if (error) {
+              console.log('there is an error: ' + err);
+              return false;
+            }
+            console.log(result);
+          }
+        )
+      }
+    )
+  }
+)
 
 // HTTP MODULE 
 
-// const { read } = require('fs');
 // const http = require('http')
 
 // const server = http.createServer((req, res) => {
 //   if(req.url === '/') {
-//     res.end(`Welcome to home page`)
+//     return res.end(`Welcome to home page`)
 //   }
 //   if(req.url === '/about') {
-//     res.end(`Welcome to about page`)
+//     return res.end(`Welcome to about page`)
 //   }
-//   res.end(`<h1>OOPS!</h1>
+//   return res.end(`<h1>OOPS!</h1>
 //     <p>No page found!!</p>
 //     <a href='/'>Go Home</a>`)
 // })
